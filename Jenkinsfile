@@ -9,7 +9,27 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'npm install'
+        sh 'echo ok'
+      }
+    }
+    stage('Test') {
+      steps {
+        sh './jenkins/scripts/test.sh'
+      }
+    }
+    stage('Delivery') {
+      steps {
+        sh './jenkins/scripts/deliver.sh'
+      }
+    }
+    stage('1') {
+      steps {
+        input 'Finished using the web site? (Click "Proceed" to continue)'
+      }
+    }
+    stage('2') {
+      steps {
+        sh './jenkins/scripts/kill.sh'
       }
     }
   }
