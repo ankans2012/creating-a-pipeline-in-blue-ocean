@@ -4,7 +4,7 @@ pipeline {
       image 'node:6-alpine'
       args '-p 3000:3000'
     }
-    
+
   }
   stages {
     stage('Build') {
@@ -22,6 +22,11 @@ pipeline {
         sh './jenkins/scripts/deliver.sh'
         input 'Finished using the web site? (Click "Proceed" to continue)'
         sh './jenkins/scripts/kill.sh'
+      }
+    }
+    stage('') {
+      steps {
+        sh 'npm install'
       }
     }
   }
